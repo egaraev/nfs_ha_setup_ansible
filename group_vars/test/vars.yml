@@ -11,3 +11,4 @@ etc_hosts:
 nfs_clients: "192.168.10.100,192.168.10.101,192.168.10.102"
 nfs_first_node: "nfsnode01"
 nfs_second_node: "nfsnode02"
+
