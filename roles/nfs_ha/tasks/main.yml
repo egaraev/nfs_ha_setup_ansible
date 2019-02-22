@@ -1,0 +1,26 @@
+---
+- include: update_os.yml
+- include: copy_rpms.yml 
+- include: install_repo.yml
+- include: install_sw.yml
+- include: install_drbd.yml
+- include: partitioning.yml
+- include: copy_scripts.yml
+- include: drbd_res_copy.yml
+- include: upload_drbd_script.yml
+- include: drbd_creation.yml
+- include: activate_drbd.yml
+- include: make_fs.yml
+- include: nfs_restart.yml
+- include: change_pass.yml
+- include: start_pcs_service.yml
+- include: user_auth.yml
+- include: create_cluster.yml
+- include: corosync_res_copy.yml
+- include: corosync_res_copy_node2.yml
+- include: cluster_enable.yml
+- include: nfs_node2.yml
+- include: setup_cluster_resources.yml
+- include: basic_tuning.yml
+- include: nfs.yml
+- include: enable_cluster_services.yml

@@ -1,0 +1,6 @@
+---
+ - name: Copy drbd resource file to needed folder
+   copy: 
+     src: /tmp/nfsdrbd.res
+     dest: /etc/drbd.d/
+     remote_src: yes

@@ -1,0 +1,25 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Check if corosync config exists
+   stat:
+     path: /etc/corosync/corosync.conf
+   register: corosync_file
+ - name: Make script executable
+   file:
+     path: /tmp/corosync.sh
+     mode: 0755
+ - name: Copy corosync config on second node
+   cron:
+     name: "#Adding corosync script to cron"
+     minute: 0,5,10,15,20,25,30,35,40,45,50,55
+     hour: "*"
+     day: "*"
+     month: "*"
+     weekday: "*"
+     job: "/tmp/corosync.sh"
+   when:
+      - result.stdout == "2"
+

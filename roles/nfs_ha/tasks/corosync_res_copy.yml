@@ -1,0 +1,13 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Copy corosync config file to needed folder
+   copy:
+     src: /tmp/corosync.conf
+     dest: /etc/corosync/
+     remote_src: yes
+   when:
+      - result.stdout == "1"
+

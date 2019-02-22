@@ -1,0 +1,12 @@
+---
+- name: Find temp files to delete
+  find:
+    paths: /tmp
+    patterns: "*.rpm"
+  register: remove_these_files
+
+- name: Delete temp files based on above findings
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ remove_these_files.files }}"

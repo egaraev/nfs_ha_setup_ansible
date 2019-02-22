@@ -1,0 +1,4 @@
+---
+- name: Change password of hacluster
+  user: name={{ user_name }} update_password=always password={{ new_password|password_hash('sha512') }}
+

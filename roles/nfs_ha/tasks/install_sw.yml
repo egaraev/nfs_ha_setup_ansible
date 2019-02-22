@@ -1,0 +1,13 @@
+---
+  - name: Install needed packages
+    yum: pkg={{item}} state=installed
+    with_items:
+      - net-tools
+      - tcpdump
+      - lvm2
+      - yum-utils
+      - pacemaker
+      - pcs
+      - fence-agents-all
+      - psmisc
+      - policycoreutils-python

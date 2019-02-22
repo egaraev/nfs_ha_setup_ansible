@@ -1,0 +1,14 @@
+---
+- name: Enable corosync service
+  systemd:  
+    name: corosync
+    enabled: yes 
+- name: Enable pcsd service
+  systemd:
+    name: pcsd
+    enabled: yes
+- name: Enable pacemaker service
+  systemd:
+    name: pacemaker
+    enabled: yes
+

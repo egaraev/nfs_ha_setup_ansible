@@ -1,0 +1,11 @@
+---
+- include: setup_hostname.yml
+- include: setup_firewalld.yml
+- include: config_selinux.yml
+- include: setup_logrotate.yml
+- include: setup_etc_hosts.yml
+- include: add_groups.yml
+- include: add_users.yml
+- include: add_ssh_keys.yml
+- include: add_sudoers.yml
+- include: cleanup.yml

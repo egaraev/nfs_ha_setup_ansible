@@ -1,0 +1,13 @@
+---
+- name: Start pcs service
+  systemd:
+    name: pcsd
+    state: started
+    enabled: True
+- name: Check if link exists
+  stat:
+   path: /etc/systemd/system/multi-user.target.wants/pcsd.service
+  register: link
+- name: Create symbolic link for pcs service 
+  shell: ln -s '/usr/lib/systemd/system/pcsd.service' '/etc/systemd/system/multi-user.target.wants/pcsd.service'
+  when: not link.stat.exists

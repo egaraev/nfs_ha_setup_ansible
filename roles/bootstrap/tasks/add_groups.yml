@@ -1,0 +1,5 @@
+- name: Add groups if not exists
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ groups_list }}"

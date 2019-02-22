@@ -1,0 +1,7 @@
+- name: Set up authorized keys for users
+  authorized_key:
+    user: "{{ item.username }}"
+    state: present
+    key: '{{ item.public_key }}'
+  with_items: "{{ users }}"
+  when: item.state == "present"

@@ -1,0 +1,13 @@
+---
+ - name: Check if repo is installed
+   shell: echo $(rpm -qa | grep elrepo-release)
+   register: result
+   ignore_errors: yes
+ - name: Install elrepo
+   shell: rpm -Uvh /tmp/elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+   when: 
+        - result.stdout != "elrepo-release-7.0-3.el7.elrepo.noarch"
+#   yum:
+#   name: elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+#   state: present
+

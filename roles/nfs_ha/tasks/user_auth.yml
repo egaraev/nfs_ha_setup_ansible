@@ -1,0 +1,15 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+ - name: Authenticate user on both machines
+   shell: pcs cluster auth {{ nfs_first_node  }} {{ nfs_second_node }} -u {{ user_name }}  -p {{ new_password }} --force
+   when:
+      - result.stdout == "1"
+ - name: Authenticate user on second machine
+   shell: pcs cluster auth {{ nfs_second_node }} -u {{ user_name }}  -p {{ new_password }} --force
+   ignore_errors: yes
+   when:
+      - result.stdout == "2"
+
+   

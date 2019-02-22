@@ -1,0 +1,12 @@
+---
+- name: Copy RHEL packages which we want to be installed to the server
+  copy: src={{item}} dest=/tmp/
+  with_items:
+    - elrepo-release-7.0-2.el7.elrepo.noarch.rpm
+    - drbd90-utils-9.3.1-1.el7.elrepo.x86_64.rpm
+    - kmod-drbd90-9.0.9-1.el7_4.elrepo.x86_64.rpm
+    - python-kitchen-1.1.1-5.el7.noarch.rpm
+    - tcpdump-4.9.0-5.el7.x86_64.rpm
+    - yum-utils-1.1.31-42.el7.noarch.rpm
+
+

@@ -1,0 +1,4 @@
+---
+  - name: Update the system and all packages to the latest level
+    yum: name=* state=latest
+

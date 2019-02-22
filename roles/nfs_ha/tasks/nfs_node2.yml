@@ -1,0 +1,14 @@
+---
+ - name: Check if this is second node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Make setup nfs exports script executable
+   file:
+     path: /tmp/setup_nfs_exports_2.sh
+     mode: 0755
+ - name: Execute nfs setup script
+   shell: /tmp/setup_nfs_exports_2.sh kubernetes {{ nfs_clients }} 
+   when:
+     - result.stdout == "2"
+

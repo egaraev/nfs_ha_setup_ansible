@@ -1,0 +1,18 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - pause:
+    prompt: "Please make sure that cluster is in Online state"
+   when:
+      - result.stdout == "1"
+ - name: Make script executable
+   file:
+     path: /tmp/setup_nfs_ha.sh
+     mode: 0755
+ - name: Run cluster resources setup script
+   shell: sh /tmp/setup_nfs_ha.sh
+   when:
+     - result.stdout == "1"
+    

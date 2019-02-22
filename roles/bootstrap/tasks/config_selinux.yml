@@ -1,0 +1,5 @@
+---
+- name: Set SELinux to Permissive if was in Enforcing state
+  selinux:
+    policy: targeted
+    state: permissive

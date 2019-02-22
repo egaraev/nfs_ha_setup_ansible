@@ -1,0 +1,14 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Disable stonith
+   command: pcs property set stonith-enabled=false
+   when:
+      - result.stdout == "1"
+ - name: Remove constraint from pcs
+   command: pcs constraint remove cli-prefer-nfsgrp
+   when:
+      - result.stdout == "1"
+   ignore_errors: yes

@@ -1,0 +1,13 @@
+---
+- name: Copy needed scripts 
+  copy: src={{item}} dest=/tmp/
+  with_items:
+     - corosync.conf
+     - corosync.sh
+     - create_dirs.sh
+     - drbd.sh
+     - nfs_ha_partition.sh
+     - setup_nfs_exports_2.sh
+     - setup_nfs_exports.sh
+     - setup_nfs_ha.sh
+

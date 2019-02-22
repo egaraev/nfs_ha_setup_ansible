@@ -1,0 +1,6 @@
+---
+sudoers_list:
+  - devops:
+    name: devops
+    content: |
+      %devops ALL=(ALL) NOPASSWD:ALL

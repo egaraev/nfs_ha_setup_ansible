@@ -1,0 +1,9 @@
+- name: Add user based on users.yml
+  user:
+    name: "{{ item.username }}"
+    shell: /bin/bash
+    groups: "{{ item.groups }}"
+    append: yes
+    state: "{{ item.state }}"
+    remove: yes
+  with_items: "{{ users }}"

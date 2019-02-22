@@ -1,0 +1,10 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Execute nfs setup script
+   shell: drbdadm primary --force nfsdrbd
+   when:
+     - result.stdout == "1"
+

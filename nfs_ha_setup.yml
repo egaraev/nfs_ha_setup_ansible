@@ -1,0 +1,13 @@
+---
+- name: Setup nfs ha
+  hosts: all
+  roles:
+    - bootstrap
+    - nfs_ha
+  vars_prompt:
+    - name: "new_password"
+      prompt: "Enter password for hacluster user"
+      private: true
+  vars:
+    user_name: "hacluster"
+

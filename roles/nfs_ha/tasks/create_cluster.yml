@@ -1,0 +1,14 @@
+---
+ - name: Check if cluster is already created
+   command: pcs status
+   register: result
+   ignore_errors: yes 
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result2
+   ignore_errors: yes
+ - name: Creating cluster
+   command: pcs cluster setup --name nfscluster {{ nfs_first_node }} {{ nfs_second_node }}
+   when: 
+      - result is failed
+      - result2.stdout == "1"

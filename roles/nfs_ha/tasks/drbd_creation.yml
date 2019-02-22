@@ -1,0 +1,11 @@
+---
+ - name: Check if drbd device exists
+   stat: path=/sys/kernel/debug/drbd/resources/nfsdrbd/connections/
+   register: drbd_disk
+ - name: Execute drbd script
+   command: sh /tmp/drbd.sh
+   when: not drbd_disk.stat.exists
+ #- name: Enable autoload DRBD
+ #  shell: echo drbd >/etc/modules-load.d/drbd.conf
+
+

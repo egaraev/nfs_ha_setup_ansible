@@ -1,0 +1,14 @@
+---
+- name: Make sure logrotate is installed
+  yum:
+    name: logrotate
+    state: present
+
+- name: Copy logrotate.d config files
+  copy:
+    src: "{{ item }}"
+    dest: /etc/logrotate.d
+    owner: root
+    mode: 0644
+  with_fileglob:
+    - all/logrotate.d/*

@@ -1,0 +1,26 @@
+---
+ - name: Check if this is first node
+   shell: echo $(hostname -s | sed -e 's/.*\(.\)$/\1/')
+   register: result
+   ignore_errors: yes
+ - name: Make create dirs script executable
+   file:
+    path: /tmp/create_dirs.sh
+    mode: 0755
+ - pause:
+    seconds: 10
+   when:
+     - result.stdout == "1" 
+ - name: Run create dirs script
+   command: /tmp/create_dirs.sh
+   when:
+     - result.stdout == "1"
+ - name: Make setup nfs exports script executable
+   file:
+     path: /tmp/setup_nfs_exports.sh
+     mode: 0755
+ - name: Execute nfs setup script
+   shell: /tmp/setup_nfs_exports.sh kubernetes {{ nfs_clients }}
+   when:
+     - result.stdout == "1"
+
