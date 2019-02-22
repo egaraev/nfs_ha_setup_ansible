@@ -5,7 +5,7 @@ etc_hosts:
   - "192.168.10.102  kubernetes03"
   - "192.168.10.10  nfsnode01"
   - "192.168.10.11  nfsnode02"
-  - "10.113.124.254  nfscluster"
+  - "192.168.10.20  nfscluster"
   - "10.0.0.1  nfsnode01-HB"
   - "10.0.0.2  nfsnode02-HB"
 nfs_clients: "192.168.10.100,192.168.10.101,192.168.10.102"
